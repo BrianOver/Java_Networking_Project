@@ -1,0 +1,51 @@
+open
+create serversocket
+3 lists:
+sockets
+bufferedreader
+printwriter
+cycle through txt doc and build cards red/green lists
+prompt host or connect
+host => HOST 
+connect => CONNECT
+
+-HOST-
+*find a way to poll for users (basic: join, add another? y/n)*
+for join:
+add new component to each list for each user
+@end of connection phase send out each IP (except each users)
+go to GREEN
+
+-CONNECT-
+prompt user for IP
+create:
+sockets
+bufferedreader
+Printwriter
+Poll for IP(s) from host (wait for “*”)
+go to RED
+
+-GREEN-
+remove:re-store:send to reds a green card
+check input buffers until all have sent in cards
+send out all cards to reds
+send out a copy of the card now with boolean for winner
+go to RED
+
+-RED-
+(first time) remove 7 red cards to an array
+remove card to green
+replace with new draw
+switch to receive
+get red cards
+get winner
+if winner:
+go to GREEN
+else
+go to RED
+
+
+**Design Problems**
+how does go to green without the other sockets? probably need to fix that
+static host that runs in background of one?
+switching host? needs all the sockets to transfer at some point
